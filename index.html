@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Facebook Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+        <nav class="main-nav"> 
+            <ul class="main-nav-1"> 
+                <li><i class="fa-brands fa-facebook"></i></li>
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search Facebook">
+                </div>
+            </ul>
+            <ul class="main-nav-2">
+                <li><i class="fa-solid fa-house"></i></li> 
+                <li><i class="fa-brands fa-youtube"></i></li> 
+                <li><i class="fa-solid fa-store"></i></li> 
+                <li><i class="fa-solid fa-user-group"></i></li> 
+                <li><i class="fa-solid fa-gamepad"></i></li> 
+            </ul>
+            <ul class="main-nav-3">
+                <li><i class="fa-solid fa-comment-dots"></i></li>
+                <li><i class="fa-solid fa-bell"></i></li> 
+                <li><i class="fa-solid fa-user"></i></li>
+
+            </ul> 
+        </nav>
+    
+
+        <div class="hero-part">
+            <div class="cover-photo" id="cover-photo">
+                <button onclick="editCoverPhoto()"></button>
+            </div>
+
+            <div class="profile-picture" id="profile-picture">
+                <button onclick="editProfilePhoto()"></button>
+            </div>
+            <div class="profile-info">
+                <h1>Rahul Jangra</h1>
+                <p>223 friends</p>
+            </div>
+            <nav>
+                <ul>
+                    <li>Posts</li>
+                    <li>About</li>
+                    <li>Friends</li>
+                    <li>Photos</li>
+                    <li>Videos</li>
+                    <li>Check-ins</li>
+                    <li>More</li>
+                </ul>
+            </nav>
+        </div>
+
+
+        <div class="profile-posts-intro-photos">
+            <div class="profile-intro-photos">
+                <div class="content">
+                    <div class="intro">
+                        <h2>Intro</h2>
+                        <p id="bio">Studied at GJU University. Lives in Chandigarh. From Hisar, Haryana.</p>
+                    </div>
+                    <button class="edit-bio-button" onclick="editBio()">Edit Bio</button>
+                </div>
+
+                <div class="photos">
+                    <h2>Photos</h2>
+                    <div class="photo-grid">
+                        <div class="photo photo1"></div>
+                        <div class="photo photo2"></div>
+                        <div class="photo photo3"></div>
+                        <div class="photo photo4"></div>
+                        <div class="photo photo5"></div>
+                        <div class="photo photo6"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-posts">
+                <div class="profile-posts-action">
+                    <div class="profile-posts-action-top">
+                        <i class="fa-solid fa-user"></i>
+                        <input class="what-on-your-mind" type="text" placeholder="What's on your mind?">
+                    </div>
+                    <div class="profile-posts-action-bottom">
+                        <p><i class="fa-solid fa-video"></i>Live video</p>
+                        <p><i class="fa-solid fa-photo-film"></i>Photo/video</p>
+                        <p><i class="fa-solid fa-flag"></i>Life event</p>
+                    </div>
+                </div>
+
+                <div class="posts">
+                    <h2>Posts</h2>
+                    <div class="post">
+                        <p><strong>Viju Jangra</strong> wrote on your timeline.</p>
+                        <p>Happy Birthday Rahul! 🎉🎂</p>
+                        <p><small>December 7, 2024</small></p>
+                    </div>
+                    <div class="post">
+                        <p><strong>Viju Jangra</strong> wrote on your timeline.</p>
+                        <p>Happy Birthday Rahul! 🎉🎂</p>
+                        <p><small>December 7, 2023</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Hidden File Inputs -->
+    <input type="file" id="cover-photo-input" style="display: none;" accept="image/*" onchange="changeCoverPhoto(event)">
+    <input type="file" id="profile-photo-input" style="display: none;" accept="image/*" onchange="changeProfilePhoto(event)">
+
+    
+
+    <!-- JavaScript for functionality -->
+    <script>
+        function editCoverPhoto() {
+            document.getElementById('cover-photo-input').click();
+        }
+
+        function editProfilePhoto() {
+            document.getElementById('profile-photo-input').click();
+        }
+
+        function editBio() {
+            const bio = document.getElementById('bio');
+            const newBio = prompt("Enter your new bio:", bio.textContent);
+            if (newBio !== null) {
+                bio.textContent = newBio;
+            }
+        }
+
+        function changeCoverPhoto(event) {
+            const coverPhoto = document.getElementById('cover-photo');
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    coverPhoto.style.backgroundImage = `url(${e.target.result})`;
+                    coverPhoto.style.backgroundSize = "cover";
+                    coverPhoto.style.backgroundPosition = "center";
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function changeProfilePhoto(event) {
+            const profilePhoto = document.getElementById('profile-picture');
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profilePhoto.style.backgroundImage = `url(${e.target.result})`;
+                    profilePhoto.style.backgroundSize = "cover";
+                    profilePhoto.style.backgroundPosition = "center";
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>
+
